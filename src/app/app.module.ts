@@ -14,12 +14,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DataService } from './services/data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { CryptoComponent } from './components/crypto/crypto.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SpinnerComponent,
+    CryptoComponent
   ],
   imports: [
     BrowserModule,

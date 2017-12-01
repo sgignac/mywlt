@@ -1,0 +1,52 @@
+
+<mat-card class="card">
+  
+  <mat-card-title>
+    <span>{{inv.code}}</span>
+    <span 
+      [class]="(inv.amount * ( (inv.value * (exchangeRate$ | async))) - inv.invested)>0 ? 'pl winner' : 'pl'">
+        {{(inv.amount * ( (inv.value * (exchangeRate$ | async))) - inv.invested) | currency:'CAD':'symbol-narrow':'1.2'}}
+      </span>
+  </mat-card-title>
+  <mat-card-content (click)="updateCurrency()">
+      <app-spinner [loading]="loading"></app-spinner>
+     <div class="currency-detail" >
+        <div class="currency-detail-row">
+          <span class="currency-detail-label">Value: </span>
+          <span class="currency-detail-price">
+            <span>USD</span>
+            <span>{{ inv.value | currency:'CAD':'symbol-narrow':'1.2-4'}}</span>
+          </span>
+          <span class="currency-detail-price">
+            <span>CAD</span>
+            <span>{{(inv.value * (exchangeRate$ | async)) | currency:'CAD':'symbol-narrow':'1.2'}}</span>
+          </span>
+        </div>
+        <div class="currency-detail-row">
+          <span class="currency-detail-label">Total: </span>
+          <span class="currency-detail-price">
+            <span>USD</span>
+            <span>{{ inv.value * inv.amount | currency:'CAD':'symbol-narrow':'1.2'}}</span>
+          </span>
+          <span class="currency-detail-price">
+              <span>CAD</span>
+              <span>{{(inv.value * (exchangeRate$ | async)) * inv.amount | currency:'CAD':'symbol-narrow':'1.2'}}</span>
+            </span>
+        </div>
+        <div class="currency-detail-row">
+            <span class="currency-detail-label">Amount: </span>
+            <span class="currency-detail-price">
+              <span>HOLDING</span>
+              <span>{{ inv.amount | number:'1.0-5'}}</span>
+            </span>
+        </div>
+        <div class="currency-detail-row">
+            <span class="currency-detail-label">Invest: </span>
+            <span class="currency-detail-price">
+              <span>CAD</span>
+              <span>{{ inv.invested | currency:'CAD':'symbol-narrow':'1.2'}}</span>
+            </span>
+        </div>
+     </div>
+  </mat-card-content>
+</mat-card>

@@ -1,51 +1,14 @@
+<app-spinner [loading]="loading"></app-spinner>
+
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>Wallet</span>
     <span class="toolbar-spacer"></span>
-    <span class="rate" *ngIf="cadChecked">(rate: {{activeRate | currency:activeCurrency:'symbol-narrow':'1.4'}})</span>
-    <mat-slide-toggle (change)="setRate()" [checked]="cadChecked" [(ngModel)]="cadChecked">{{activeCurrency}}</mat-slide-toggle>
+    <span class="rate">ex-rate: {{(exchangeRate$ | async) | currency:'CAD':'symbol-narrow':'1.4'}}</span>
   </mat-toolbar-row>
 </mat-toolbar>
  
-<mat-accordion>
-  
-  <mat-expansion-panel *ngFor="let inv of wallet$ | async">
-    <mat-expansion-panel-header>
-      <mat-panel-title> 
-        {{inv.code}}
-      </mat-panel-title>
-      <mat-panel-description class="currency-detail">
-          <span>{{currencyDetails[inv.code].value | currency:activeCurrency:'symbol-narrow':'1.2'}}</span>
-        | <span>{{currencyDetails[inv.code].total | currency:activeCurrency:'symbol-narrow':'1.2'}}</span>
-        | <span [class]="currencyDetails[inv.code].pl>0 ? 'pl winner' : 'pl'">{{currencyDetails[inv.code].pl | currency:activeCurrency:'symbol-narrow':'1.2'}}</span>
-        
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-
-    <mat-list dense>
-      <mat-list-item> 
-        <div matLine> 
-          <div>Holding: </div>
-          <div> {{inv.amount | number:'4.4'}} </div> 
-        </div>
-      </mat-list-item>
-      <mat-list-item>
-        <div matLine>
-          <div>Invested: </div>
-          <div> {{inv.invested | currency:activeCurrency:'symbol-narrow':'1.2'}} </div>
-        </div>
-      </mat-list-item>
-      <mat-list-item> 
-        <div matLine> 
-          <div>Ex. rate: </div>
-          <div> {{activeRate | currency:activeCurrency:'symbol-narrow':'1.4'}} </div>
-        </div>
-      </mat-list-item>
-    </mat-list>
-
-  </mat-expansion-panel>
-
-</mat-accordion>
+<app-crypto *ngFor="let inv of wallet$ | async" [inv]="inv"></app-crypto>
 
 <button mat-fab color="primary" class="fixed-bottom" (click)="updateData()">
   <i class="material-icons">autorenew</i>
