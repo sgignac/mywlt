@@ -1,0 +1,45 @@
+.fixed-bottom{
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+}
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+.mat-list{
+  box-shadow: rgba(0,0,0,0.5) 0px 0px 7px;
+  padding: 8px 0px;
+  .mat-list-item{
+    height: 30px;
+  }
+}
+mat-toolbar{
+  span{
+    &.rate{
+      font-size: 12px;
+      margin: 0px 16px 4px 0px;
+    }
+  }
+} 
+div.mat-line{
+  > div {
+    display: inline-block;
+    width: 60px;
+  }
+}
+.currency-detail{
+  span{
+    padding: 0px 5px;
+    margin: 0px 5px;
+    &.pl{
+      color: #424242;
+      border-radius: 3px;
+      background-color: palevioletred;
+      &.winner{
+        background-color:palegreen;
+      }
+    }
+    
+  }
+  
+}
