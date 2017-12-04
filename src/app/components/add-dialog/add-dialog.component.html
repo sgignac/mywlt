@@ -1,0 +1,25 @@
+<div>
+  <h2 mat-dialog-title>MY DIALOG</h2>
+  <mat-dialog-content>
+    
+    <form class="">
+      <mat-form-field>
+      <input matInput placeholder="Currency code" required>
+      </mat-form-field>
+      <mat-form-field>
+      <input matInput placeholder="Number of unit hold" required>
+      </mat-form-field>
+      <mat-form-field>
+      <input matInput placeholder="Total value invested" required>
+      </mat-form-field>
+    </form>
+
+
+  </mat-dialog-content>
+  <br><br>
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="saveTheForm()">SAVE</button>
+    <button mat-raised-button (click)="cancelTheForm()">CANCEL</button>
+  </mat-dialog-actions>
+
+</div>

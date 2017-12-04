@@ -2,14 +2,33 @@
 
 <mat-toolbar color="primary">
   <mat-toolbar-row>
+    
+    <mat-menu #rootMenu="matMenu">
+      <button mat-menu-item (click)="addNewCurrency()"><mat-icon>add</mat-icon>Add new...</button>
+      <button mat-menu-item [matMenuTriggerFor]="editSubMenu"><mat-icon>edit</mat-icon>Edit</button>
+      <button mat-menu-item [matMenuTriggerFor]="deleteSubMenu"><mat-icon>delete</mat-icon>Delete</button>
+    </mat-menu>
+    
+    <mat-menu #editSubMenu="matMenu">
+      <button mat-menu-item *ngFor="let inv of wallet$ | async" (click)="editCurrency(inv.code)">{{inv.code}}</button>
+    </mat-menu>
+    <mat-menu #deleteSubMenu="matMenu">
+      <button mat-menu-item *ngFor="let inv of wallet$ | async" (click)="deleteCurrency(inv.code)">{{inv.code}}</button>
+    </mat-menu>
+    
+    <button mat-icon-button [matMenuTriggerFor]="rootMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
     <span>Wallet</span>
     <span class="toolbar-spacer"></span>
     <span class="rate">ex-rate: {{(exchangeRate$ | async) | currency:'CAD':'symbol-narrow':'1.4'}}</span>
+    
   </mat-toolbar-row>
 </mat-toolbar>
  
 <app-crypto *ngFor="let inv of wallet$ | async" [inv]="inv"></app-crypto>
 
-<button mat-fab color="primary" class="fixed-bottom" (click)="updateData()">
+<button mat-fab color="primary" class="fixed-bottom" (click)="updateAllCurrencies()">
   <i class="material-icons">autorenew</i>
 </button>

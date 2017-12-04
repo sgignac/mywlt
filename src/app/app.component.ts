@@ -1,3 +1,4 @@
+import { AddDialogComponent } from './components/add-dialog/add-dialog.component';
 import { ICryptoApi } from './interfaces/icrypto-api';
 import { DataService } from './services/data.service';
 import { Component } from '@angular/core';
@@ -7,6 +8,8 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { select, NgRedux } from '@angular-redux/store';
 import { Icurrency } from './interfaces/icurrency';
 import { SET_VALUE } from './data/app.actions';
+import { MatDialog } from '@angular/material';
+import { resetFakeAsyncZone } from '@angular/core/testing';
 
 
 @Component({
@@ -19,7 +22,11 @@ export class AppComponent implements OnInit {
   @select() wallet$: Observable<Icurrency[]>;
   @select() exchangeRate$: Observable<number>;
   
-  constructor(private dataService:DataService, private _dataStore:NgRedux<IAppState>){ }
+  constructor(
+    private dataService:DataService, 
+    private _dataStore:NgRedux<IAppState>,
+    private _dialog:MatDialog
+  ){ }
 
   ngOnInit() {
     this.dataService.getExchangeRate();
@@ -41,24 +48,20 @@ export class AppComponent implements OnInit {
       )
   }
 
-  updateData(){
-    this.updateAllCurrencies()
-    /* let wallet;
-    this._dataStore.select('wallet').subscribe(wlt => wallet = wlt);
-    for(let cur of wallet){
-      console.log(cur);
-      this.dataService.getWalletValue(cur.code);
-    } */
-
-    /* this.wallet$.forEach(item => {
-      item.forEach(cur => {
-        this.loadings[cur.code] = true;
-        this.dataService.getWalletValue(cur.code);
-      })
-      this.dataService.getWalletValue(cur.code);
-      console.log(this.loadings)
-    }) */
+  addNewCurrency(){
+    console.log('Add new currency');
+    let dialogRef = this._dialog.open(AddDialogComponent, {data: ""});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('dialog closed', result);
+    });
   }
 
+  editCurrency(code:string){
+    console.log('editing ' + code);
+  }
+
+  deleteCurrency(code: string) {
+    console.log('deleting ' + code);
+  }
 
 }

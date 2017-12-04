@@ -1,12 +1,14 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
+
 
 $result = array();
 
 //DB CONNECTION
 try {
-    //$pdo = new PDO('mysql:host=db712537974.db.1and1.com:3306;dbname=db712537974', 'dbo712537974', 'france03.1');
-    $pdo = new PDO('mysql:host=localhost;dbname=mywltapi', 'root', 'root');
+    $pdo = new PDO('mysql:host=db712537974.db.1and1.com:3306;dbname=db712537974', 'dbo712537974', 'france03.1');
+    //$pdo = new PDO('mysql:host=localhost;dbname=mywltapi', 'root', 'root');
 } catch (PDOException $e) {
     $result["success"]=false;
     $result["message"]='Cannot connect to database / ' . $e->getMessage();

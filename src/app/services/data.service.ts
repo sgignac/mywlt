@@ -1,3 +1,5 @@
+import { Iapi } from './../interfaces/Iapi';
+import { Icurrency } from './../interfaces/icurrency';
 import { Observable } from 'rxjs/Observable';
 import { NgRedux } from '@angular-redux/store';
 import { Injectable } from '@angular/core';
@@ -31,4 +33,9 @@ export class DataService {
   getWalletValue(code:string){
     return this._http.get<ICryptoApi>('https://min-api.cryptocompare.com/data/price?fsym=' + code + '&tsyms=USD')
   }
+
+  getOnlineWallet(){
+    return this._http.get<Iapi>('http://apiwlt.sebdevlab.com/?key=121212')
+  }
+
 }
