@@ -27,4 +27,6 @@ $my-app-theme: mat-dark-theme($my-app-primary, $my-app-accent);
 body{
     margin: 0px;
     background-color: #282828;
+    background-image: url("assets/bg.jpg");
+    background-size: cover;
 }

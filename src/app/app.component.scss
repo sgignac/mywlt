@@ -13,13 +13,14 @@
       float: right;
       color: #424242;
       border-radius: 3px;
-      background-color: palevioletred;
+      color: palevioletred;
       &.winner{
-        background-color:palegreen;
+        color: palegreen;
+        
       }
     }
   }
-  .currency-detail{
+  /* .currency-detail{
     box-sizing: border-box;
     border-radius: 2px;
     box-shadow: rgba(0,0,0,0.5) 1px 1px 3px;
@@ -55,9 +56,12 @@
         }
       }
     }
-  }
+  } */
 }
 mat-toolbar{
+  font-weight: 100;
+  font-size: 30px;
+  background-color: transparent;
   span{
     &.rate{
       font-size: 12px;
@@ -66,3 +70,37 @@ mat-toolbar{
     }
   }
 } 
+button.mat-menu-item {
+  font-weight: 100;
+  .mat-icon{
+    margin-right: 10px;
+  }
+}
+
+
+.mat-card{
+  font-weight: 100;
+  background:none;
+  text-shadow: black 1px 1px 3px;
+  &:not([class*=mat-elevation-z]){
+    box-shadow: none;
+  }
+  .mat-card-title{
+    font-weight: inherit;
+    font-size: 40px;
+  }
+  .currency-detail-row{
+    font-size: 24px;
+    line-height: 40px;
+    border-bottom: 1px solid white;
+    margin: 0 0 30px 0;
+    > span{
+      &:first-of-type{
+        font-size: 11px;
+        vertical-align: top;
+        position: absolute;
+        margin-top: -24px;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { MaterialModule } from './material-module/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // data store
@@ -38,6 +38,7 @@ export function startupServiceFactory(startupService: StartupService): Function 
     AppRoutingModule,
     NgReduxModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule

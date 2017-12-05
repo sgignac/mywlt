@@ -23,13 +23,13 @@ export class AppComponent implements OnInit {
   @select() exchangeRate$: Observable<number>;
   
   constructor(
-    private dataService:DataService, 
+    private _dataService:DataService, 
     private _dataStore:NgRedux<IAppState>,
     private _dialog:MatDialog
   ){ }
 
   ngOnInit() {
-    this.dataService.getExchangeRate();
+    this._dataService.getExchangeRate();
     this.updateAllCurrencies();
   } 
 
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
 
   updateAllCurrencies(){
     this.loading = true;
-    this.dataService.getAllWalletValues()
+    this._dataService.getAllWalletValues()
       .subscribe(data =>{
           Object.keys(data).forEach(key => {
             let cur:ICryptoApi = data[key] as ICryptoApi;
@@ -53,6 +53,9 @@ export class AppComponent implements OnInit {
     let dialogRef = this._dialog.open(AddDialogComponent, {data: ""});
     dialogRef.afterClosed().subscribe(result => {
       console.log('dialog closed', result);
+      this._dataService.addNewCurrency(result).subscribe(res =>{
+        console.log('added', res);
+      })
     });
   }
 

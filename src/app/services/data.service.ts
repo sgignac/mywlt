@@ -38,4 +38,9 @@ export class DataService {
     return this._http.get<Iapi>('http://apiwlt.sebdevlab.com/?key=121212')
   }
 
+  addNewCurrency(data){
+    return this._http.put('http://apiwlt.sebdevlab.com/?key=121212', data)
+  }
+
+
 }
