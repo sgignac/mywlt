@@ -1,3 +1,4 @@
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { AddDialogComponent } from './components/add-dialog/add-dialog.component';
 import { ICryptoApi } from './interfaces/icrypto-api';
 import { DataService } from './services/data.service';
@@ -7,9 +8,10 @@ import { Observable } from 'rxjs/Observable';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { select, NgRedux } from '@angular-redux/store';
 import { Icurrency } from './interfaces/icurrency';
-import { SET_VALUE } from './data/app.actions';
+import { SET_VALUE, SET_WALLET } from './data/app.actions';
 import { MatDialog } from '@angular/material';
 import { resetFakeAsyncZone } from '@angular/core/testing';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -22,15 +24,17 @@ export class AppComponent implements OnInit {
   @select() wallet$: Observable<Icurrency[]>;
   @select() exchangeRate$: Observable<number>;
   
+
   constructor(
     private _dataService:DataService, 
     private _dataStore:NgRedux<IAppState>,
-    private _dialog:MatDialog
+    private _dialog:MatDialog,
+    private _translate: TranslateService
   ){ }
 
   ngOnInit() {
     this._dataService.getExchangeRate();
-    this.updateAllCurrencies();
+    this.updateAllCurrencies();  
   } 
 
   loading: boolean = false;
@@ -39,32 +43,48 @@ export class AppComponent implements OnInit {
     this.loading = true;
     this._dataService.getAllWalletValues()
       .subscribe(data =>{
-          Object.keys(data).forEach(key => {
-            let cur:ICryptoApi = data[key] as ICryptoApi;
-            this._dataStore.dispatch({type: SET_VALUE, payload: {code: key, value: cur.USD}});
-          });
           this.loading = false;
         }
       )
   }
 
   addNewCurrency(){
-    console.log('Add new currency');
-    let dialogRef = this._dialog.open(AddDialogComponent, {data: ""});
+    let dialogRef = this._dialog.open(AddDialogComponent, {width: '95%', data: ""});
     dialogRef.afterClosed().subscribe(result => {
-      console.log('dialog closed', result);
-      this._dataService.addNewCurrency(result).subscribe(res =>{
-        console.log('added', res);
-      })
+      if(result){
+        if(result.success){
+          this._dataService.addNewCurrency(result.data);
+        }
+      }
     });
   }
 
-  editCurrency(code:string){
-    console.log('editing ' + code);
+  editCurrency(data){
+    let dialogRef = this._dialog.open(AddDialogComponent, {width: '95%', data: data});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        if(result.success){
+          this._dataService.editCurrency(result.data);
+        }
+      }
+    });
   }
 
-  deleteCurrency(code: string) {
-    console.log('deleting ' + code);
+  deleteCurrency(data) {
+    let dialogRef = this._dialog.open(ConfirmDialogComponent, {width: '95%', data: data.code});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this._dataService.deleteCurrency(data);
+      }
+    });
+  }
+
+  switchLanguage(){
+    let lang:string = this._translate.currentLang === 'en' ? 'fr' : 'en';
+    this.loading = true;
+    this._translate.use(lang).subscribe(data =>{
+      this.loading = false;
+    });
   }
 
 }

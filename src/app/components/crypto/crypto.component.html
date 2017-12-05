@@ -9,11 +9,10 @@
       </span>
 
   </mat-card-title>
-  <mat-card-content (click)="updateCurrency()">
-      <app-spinner [loading]="loading"></app-spinner>
+  <mat-card-content>
      <div class="currency-detail" >
         <div class="currency-detail-row">
-          <span class="currency-detail-label">Value: </span>
+          <span class="currency-detail-label">{{"detail.value" | translate}}</span>
           <span class="currency-detail-price">
             <span>USD</span>
             <span>{{ inv.value | currency:'CAD':'symbol-narrow':'1.2-4'}}</span>
@@ -35,9 +34,9 @@
             </span>
         </div>
         <div class="currency-detail-row">
-            <span class="currency-detail-label">Amount: </span>
+            <span class="currency-detail-label">{{"detail.amount" | translate}}</span>
             <span class="currency-detail-price">
-              <span>HOLDING</span>
+              <span>{{"detail.holding" | translate}}</span>
               <span>{{ inv.amount | number:'1.0-5'}}</span>
             </span>
         </div>

@@ -1,0 +1,29 @@
+{
+    "global.yes": "Oui",
+    "global.no": "Non",
+    "global.save": "Sauvegarder",
+    "global.cancel" : "Annuler",
+    
+    "error.required": "Ce champ est requis",
+    "error.length": "Doit être entre 3 et 5 caractères",
+    
+    "application.title": "Portfolio",
+    "other.language" : "English",
+    "exchange.rate" : "taux-ch: ",
+    "detail.value" : "Valeur: ",
+    "detail.amount" : "Quantité: ",
+    "detail.holding" : "DETIENT",
+    
+    "menu.add": "ajouter",
+    "menu.edit": "modifier",
+    "menu.delete": "supprimer",
+    
+    "confirm.title": "Retirer?",
+    "confirm.remove.message" : "Êtes-vous certain de vouloir retirer {{code}} ?",
+    
+    "add.edit.title" : "Ajouter / Modifier",
+    "add.edit.code" : "Code de monnaie",
+    "add.edit.hold": "Nombre d'unité en possession",
+    "add.edit.invest": "Montant investis"
+    
+}

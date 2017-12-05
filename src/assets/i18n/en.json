@@ -1,0 +1,28 @@
+{
+    "global.yes": "Yes",
+    "global.no": "No",
+    "global.save": "Save",
+    "global.cancel" : "Cancel",
+
+    "error.required": "This field is required",
+    "error.length": "Must be wittin 3 to 5 caracters",
+
+    "application.title": "Wallet",
+    "other.language" : "Français",
+    "exchange.rate" : "ex.rate: ",
+    "detail.value" : "Value: ",
+    "detail.amount" : "Amount: ",
+    "detail.holding" : "HOLDING",
+    
+    "menu.add": "add new",
+    "menu.edit": "edit",
+    "menu.delete": "remove",
+
+    "confirm.title": "Remove?",
+    "confirm.remove.message" : "Are you sure you want to remove {{code}} ?",
+
+    "add.edit.title" : "Add / Modify",
+    "add.edit.code" : "Currency code",
+    "add.edit.hold": "Number of units hold",
+    "add.edit.invest": "Amount invested"
+}

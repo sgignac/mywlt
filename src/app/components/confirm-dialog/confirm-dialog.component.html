@@ -1,0 +1,11 @@
+<div>
+    <h2 mat-dialog-title>{{"confirm.title" | translate}}</h2>
+      <mat-dialog-content>
+        <span>{{"confirm.remove.message" | translate:param}}</span>
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <button mat-raised-button type="button" (click)="confirm(true)">{{"global.yes" | translate}}</button>
+        <button mat-raised-button type="button" (click)="confirm(false)">{{"global.no" | translate}}</button>
+      </mat-dialog-actions>
+  </div>
+  

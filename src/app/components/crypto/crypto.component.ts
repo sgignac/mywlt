@@ -22,20 +22,4 @@ export class CryptoComponent implements OnInit {
   ngOnInit() {
   }
 
-  updateCurrency(){
-    this.loading = true;
-    this._dataService.getWalletValue(this.inv.code).subscribe(data =>{
-        this._dataStore.dispatch({type: SET_VALUE, payload: {code: this.inv.code, value: data.USD}});
-        this.loading = false;
-      }
-    )
-
-
-    /* .subscribe(data =>{
-      this._dataStore.dispatch({type: SET_VALUE, payload: {code: code, value: data.USD}});
-    } */
-    //)
-  }
-
-
 }
