@@ -1,16 +1,30 @@
 
-<mat-card class="card">
+<mat-card class="card" [class.open]="open">
   
-  <mat-card-title>
+  <mat-card-title (click)="open = !open">
     <span>{{inv.code}}</span>
     <span 
-      [class]="(inv.amount * ( (inv.value * (exchangeRate$ | async))) - inv.invested)>0 ? 'pl winner' : 'pl'">
+      [class]="(inv.amount * ( (inv.value * (exchangeRate$ | async))) - inv.invested)>0 ? 'pl winner' : 'pl'"
+      *ngIf="inv.amount>0">
         {{(inv.amount * ( (inv.value * (exchangeRate$ | async))) - inv.invested) | currency:'CAD':'symbol-narrow':'1.2'}}
       </span>
-
   </mat-card-title>
   <mat-card-content>
-     <div class="currency-detail" >
+      <div class="currency-summary box-style">
+        <span class="currency-detail-price">
+          <span>USD</span>
+          <span>{{ inv.value | currency:'CAD':'symbol-narrow':'1.2-4'}}</span>
+        </span>
+        <span class="currency-detail-price">
+          <span>CAD</span>
+          <span>{{(inv.value * (exchangeRate$ | async)) | currency:'CAD':'symbol-narrow':'1.2'}}</span>
+        </span>
+        <span class="currency-detail-price" *ngIf="inv.amount>0">
+          <span>CAD</span>
+          <span>{{(inv.value * (exchangeRate$ | async)) * inv.amount | currency:'CAD':'symbol-narrow':'1.2'}}</span>
+        </span>
+      </div>
+     <div class="currency-detail box-style" >
         <div class="currency-detail-row">
           <span class="currency-detail-label">{{"detail.value" | translate}}</span>
           <span class="currency-detail-price">

@@ -17,14 +17,41 @@ app-crypto{
         }
       }
     }
-    .currency-detail{
+    .box-style{
       box-sizing: border-box;
       border-radius: 2px;
-      box-shadow: rgba(0,0,0,0.5) 1px 1px 3px;
+      box-shadow: rgba(0, 0, 0, 0.5) 1px 1px 3px;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 150, 135, 0.20);
+      background-color: rgba(0, 150, 135, 0.2);
       padding: 10px;
+    }
+    .currency-summary{
+      font-size: 12px;
+      text-align: right;
+      padding: 14px 0px;
+    }
+    .currency-detail-price{
+      margin: 0 5px 0 0;
+      span {
+        border: 1px solid rgba(0, 150, 135, 0.40);
+        padding: 6px;
+        margin: 0px;
+        box-shadow: rgba(0,0,0,0.3) 1px 1px 3px;
+        &:first-of-type{
+          border-radius: 3px 0px 0px 3px;
+          background-color: rgba(0, 150, 135, 0.40);
+          border-right: none;
+        }
+        &:last-of-type{
+          margin: 0 0 0 -5px;
+          border-radius: 0px 3px 3px 0px;
+          border-left: none;
+        }
+      }
+    }
+    .currency-detail{
+      display: none;
       .currency-detail-row{
         display: block;
         line-height: 37px;
@@ -37,27 +64,16 @@ app-crypto{
           width: 50px;
           font-size: 12px;
         }
-        .currency-detail-price{
-          margin: 0 5px 0 0;
-          span {
-            border: 1px solid rgba(0, 150, 135, 0.40);
-            padding: 6px;
-            margin: 0px;
-            box-shadow: rgba(0,0,0,0.3) 1px 1px 3px;
-            &:first-of-type{
-              border-radius: 3px 0px 0px 3px;
-              background-color: rgba(0, 150, 135, 0.40);
-              border-right: none;
-            }
-            &:last-of-type{
-              margin: 0 0 0 -5px;
-              border-radius: 0px 3px 3px 0px;
-              border-left: none;
-            }
-          }
-        }
       }
     }
+  &.open{
+    .currency-summary{
+      display: none;
+    }
+    .currency-detail{
+      display: block;
+    }
+  }
 }
 .mat-card{
   background: rgba(60,60,60,0.5);
@@ -66,6 +82,7 @@ app-crypto{
   text-shadow: black 1px 1px 3px;
   .mat-card-title{
     font-weight: 100;
-    font-size: 40px;
+    font-size: 30px;
+    margin-bottom: 5px;
   }
 }

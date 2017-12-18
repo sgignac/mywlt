@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
 
   @select() wallet$: Observable<Icurrency[]>;
   @select() exchangeRate$: Observable<number>;
-  
 
   constructor(
     private _dataService:DataService, 
@@ -38,6 +37,8 @@ export class AppComponent implements OnInit {
   } 
 
   loading: boolean = false;
+ 
+
 
   updateAllCurrencies(){
     this.loading = true;

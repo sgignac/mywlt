@@ -22,4 +22,6 @@ export class CryptoComponent implements OnInit {
   ngOnInit() {
   }
 
+  open: boolean = false;
+
 }
