@@ -24,6 +24,8 @@ import { StartupService } from './services/startup.service';
 import { AddDialogComponent } from './components/add-dialog/add-dialog.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { ActivatedRoute } from '@angular/router';
+import { HeaderComponent } from './components/header/header.component';
+import { SummaryComponent } from './components/summary/summary.component';
 
 export function startupServiceFactory(startupService: StartupService): Function {
   return () => startupService.load();
@@ -39,7 +41,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     SpinnerComponent,
     CryptoComponent,
     AddDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    HeaderComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,

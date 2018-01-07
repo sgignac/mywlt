@@ -12,6 +12,11 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
+$custom-typography: mat-typography-config(
+    $font-family: 'Montserrat'
+);
+@include mat-core($custom-typography);
+
 $my-app-primary: mat-palette($mat-teal);
 $my-app-accent:  mat-palette($mat-teal, A200, A100, A400);
 
@@ -26,8 +31,11 @@ $my-app-theme: mat-dark-theme($my-app-primary, $my-app-accent);
 
 body{
     margin: 0px;
-    background-color: #282828;
-    background-image: url("assets/bg.jpg");
-    background-size: cover;
+    background: #1f3c46; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #1f3c46 0%, #10262f 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover, #1f3c46 0%,#10262f 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center, #1f3c46 0%,#10262f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f3c46', endColorstr='#10262f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background-size: 100vw 100vh;
     background-attachment: fixed;
 }

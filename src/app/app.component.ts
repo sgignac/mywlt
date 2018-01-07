@@ -38,8 +38,6 @@ export class AppComponent implements OnInit {
 
   loading: boolean = false;
  
-
-
   updateAllCurrencies(){
     this.loading = true;
     this._dataService.getAllWalletValues()
@@ -49,43 +47,6 @@ export class AppComponent implements OnInit {
       )
   }
 
-  addNewCurrency(){
-    let dialogRef = this._dialog.open(AddDialogComponent, {width: '95%', data: ""});
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        if(result.success){
-          this._dataService.addNewCurrency(result.data);
-        }
-      }
-    });
-  }
-
-  editCurrency(data){
-    let dialogRef = this._dialog.open(AddDialogComponent, {width: '95%', data: data});
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        if(result.success){
-          this._dataService.editCurrency(result.data);
-        }
-      }
-    });
-  }
-
-  deleteCurrency(data) {
-    let dialogRef = this._dialog.open(ConfirmDialogComponent, {width: '95%', data: data.code});
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this._dataService.deleteCurrency(data);
-      }
-    });
-  }
-
-  switchLanguage(){
-    let lang:string = this._translate.currentLang === 'en' ? 'fr' : 'en';
-    this.loading = true;
-    this._translate.use(lang).subscribe(data =>{
-      this.loading = false;
-    });
-  }
+  
 
 }

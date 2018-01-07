@@ -1,0 +1,13 @@
+<div class="appsummary">
+  <mat-card>
+      <div>
+        <h1>NET WORTH</h1>
+        <h2>{{networth * (exchangeRate$ | async) | currency:'CAD':'symbol':'1.2'}}</h2>
+      </div>
+      <div>
+        <h1>profit / loss</h1>
+        <h3>{{pl | currency:'CAD':'symbol':'1.2'}}</h3>
+      </div>
+      <canvas id="canvas"></canvas>
+  </mat-card>
+</div>

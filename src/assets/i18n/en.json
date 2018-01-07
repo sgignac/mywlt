@@ -7,7 +7,7 @@
     "error.required": "This field is required",
     "error.length": "Must be wittin 3 to 5 caracters",
 
-    "application.title": "Wallet",
+    "application.title": "Hodler",
     "other.language" : "Français",
     "exchange.rate" : "ex.rate: ",
     "detail.value" : "Value: ",
